@@ -40,6 +40,25 @@ chown -R mysqlosf:mysqlosf .
 
 6、登录主服务器的mysql，查询master的状态
 
+mysql>show master status;
+
+   注：执行完此步骤后不要再操作主服务器MYSQL，防止主服务器状态值变化
+7、配置从服务器Slave：
+   mysql>change master to master_host='192.168.145.222',master_user='mysync',master_password='q123456',
+         master_log_file='mysql-bin.000004',master_log_pos=308;   //注意不要断开，308数字前后无单引号。
+
+   Mysql>start slave;    //启动从服务器复制功能
+
+8、检查从服务器复制功能状态：
+
+   mysql> show slave status\G
+
+
+9、主从服务器测试：
+
+主服务器Mysql，建立数据库，并在这个库中建表插入一条数据：
+
+
 
 
 
